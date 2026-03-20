@@ -1,8 +1,6 @@
 import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
 
-const resend = new Resend(process.env.RESEND_API_KEY ?? '')
-
 export async function POST(req: NextRequest) {
   try {
     const { name, email, subject, message } = await req.json()
@@ -13,6 +11,15 @@ export async function POST(req: NextRequest) {
     if (!emailRegex.test(email)) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
     }
+
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+      return NextResponse.json({ error: 'Missing API key' }, { status: 500 })
+    }
+
+    // Create the client lazily so `next build` doesn't crash when env vars are absent.
+    const resend = new Resend(apiKey)
+
     await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
       to: 'brendonjcarbullido@gmail.com',
@@ -25,8 +32,4 @@ export async function POST(req: NextRequest) {
     console.error('Email send error:', error)
     return NextResponse.json({ error: 'Failed to send' }, { status: 500 })
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 6759c451ac4cd4dbea5872f93efe3683d8e46805

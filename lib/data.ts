@@ -7,6 +7,7 @@ export const projects = [
     role: 'Art Director + Director of Social Media',
     description:
       "Transformed Teeccino's social presence from infrequent, outdated content into a cohesive branded ecosystem — growing to 45K+ followers at a sustained 6% engagement rate. Scaled content cadence from 2x to 5x per week as sole creator, shooting, editing, and publishing all static and reel content independently.",
+    mediaType: 'image',
     image: '/images/work/teeccino-rebrand.jpg',
     tags: ['Social Strategy', 'Content Direction', 'Brand Identity', 'Photography', 'Video'],
   },
@@ -18,6 +19,7 @@ export const projects = [
     role: 'Creative Director',
     description:
       "Led the Anne Klein International Women's Campaign from concept through final delivery across digital and print channels. Oversaw full creative direction, production coordination, and post-production for one of the agency's largest campaign launches.",
+    mediaType: 'image',
     image: '/images/work/anne-klein-campaign.jpg',
     tags: ['Campaign Direction', 'Art Direction', 'Print & Digital', 'Fashion'],
   },
@@ -29,6 +31,8 @@ export const projects = [
     role: 'Creative Director',
     description:
       "Spearheaded the launch of Lotto US's American branch — developing the full visual identity and bridging creative assets to international markets. Led all brand positioning, visual system development, and launch content.",
+    mediaType: 'video',
+    video: '/videos/lotto-us.mp4',
     image: '/images/work/lotto-us-launch.jpg',
     tags: ['Brand Launch', 'Visual Identity', 'International', 'Creative Direction'],
   },
@@ -40,8 +44,32 @@ export const projects = [
     role: 'Creative Director',
     description:
       'Directed photo and video production across campaign and digital content for Joseph Abboud. Managed full creative direction, shoot execution, and post-production delivery.',
+    mediaType: 'video',
+    video: '/videos/joseph-abboud.mp4',
     image: '/images/work/joseph-abboud.jpg',
     tags: ['Creative Direction', 'Production', 'Fashion', 'Photography', 'Video'],
+  },
+  {
+    id: 'casa-amour',
+    title: 'Casa Amour',
+    client: 'Casa Amour',
+    year: '2024',
+    role: 'Art Director',
+    description: 'Brand direction and campaign visuals for Casa Amour.',
+    mediaType: 'image',
+    image: '/images/work/casa-amour.jpg',
+    tags: ['Brand Direction', 'Campaign Visuals'],
+  },
+  {
+    id: 'hand-designed',
+    title: 'Hand Designed',
+    client: 'Hand Designed',
+    year: '2024',
+    role: 'Creative Director',
+    description: 'Design system and visual content for a handcrafted brand experience.',
+    mediaType: 'image',
+    image: '/images/work/hand-designed.jpg',
+    tags: ['Design Systems', 'Content Direction'],
   },
   {
     id: 'kandeyce-jorden',
@@ -51,6 +79,7 @@ export const projects = [
     role: 'Art Director',
     description:
       "Built an artist's social presence and visual brand from zero to thousands of engaged followers — executing all content planning, curation, and production independently. Directed mood board workshops that became a successful recurring revenue offering, establishing a visual language that defined the artist's public identity.",
+    mediaType: 'image',
     image: '/images/work/kandeyce-jorden.jpg',
     tags: ['Brand Building', 'Social Growth', 'Art Direction', 'Content Strategy'],
   },
@@ -62,6 +91,7 @@ export const projects = [
     role: 'Art Director',
     description:
       "Designed contemporary product packaging and visual identities that balance modern design sensibility with Teeccino's established brand heritage. Work spans new product lines, seasonal packaging, and digital-first brand extensions.",
+    mediaType: 'image',
     image: '/images/work/teeccino-packaging.jpg',
     tags: ['Packaging Design', 'Art Direction', 'Brand', 'Print'],
   },

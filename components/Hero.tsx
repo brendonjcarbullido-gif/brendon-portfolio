@@ -50,6 +50,19 @@ export default function Hero() {
 
   return (
     <section className="relative h-[100dvh] min-h-[640px] w-full overflow-hidden bg-home">
+      <video
+        src="/videos/C0006.mov"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full object-cover"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-1 bg-[rgba(0,0,0,0.5)]"
+        aria-hidden
+      />
       {isTracking && !reduced && (
         <span
           className="absolute right-6 top-24 z-30 h-3 w-3 rounded-full bg-gold opacity-60 animate-tracking-dot md:right-10 md:top-28"
@@ -60,7 +73,7 @@ export default function Hero() {
 
       <div
         ref={layer1}
-        className="pointer-events-none absolute inset-0 will-change-transform"
+        className="pointer-events-none absolute inset-0 z-2 will-change-transform"
         aria-hidden
       >
         <svg className="h-full w-full opacity-[0.07]" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +93,7 @@ export default function Hero() {
 
       <div
         ref={layer2}
-        className="pointer-events-none absolute inset-0 flex items-center justify-center will-change-transform"
+        className="pointer-events-none absolute inset-0 z-2 flex items-center justify-center will-change-transform"
         aria-hidden
       >
         <div
@@ -95,12 +108,13 @@ export default function Hero() {
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-5 text-center">
         <div ref={layer3} className="will-change-transform">
           <h1
-            className="flex flex-wrap justify-center gap-x-4 gap-y-1 font-display font-bold uppercase leading-none text-ink"
+            className="font-display font-bold uppercase leading-none text-ink"
             style={{ fontSize: 'clamp(72px, 10vw, 140px)' }}
           >
             {nameWords.map((w, i) => (
               <motion.span
                 key={w}
+                className="block"
                 initial={reduced ? false : { opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -144,7 +158,7 @@ export default function Hero() {
 
       <div
         ref={layer5}
-        className="pointer-events-none absolute inset-0 opacity-[0.06] will-change-transform"
+        className="pointer-events-none absolute inset-0 z-2 opacity-[0.06] will-change-transform"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E")`,
         }}

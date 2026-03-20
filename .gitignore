@@ -30,3 +30,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+<<<<<<< HEAD
+=======
+public/images/videography/
+>>>>>>> 6759c451ac4cd4dbea5872f93efe3683d8e46805

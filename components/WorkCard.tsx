@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import type { Project } from '@/lib/data'
 import { motionEase } from '@/lib/motion'
@@ -59,11 +60,10 @@ export default function WorkCard({ project, index, large, onOpen }: Props) {
         large ? 'aspect-[16/11] md:aspect-[16/10]' : 'aspect-[16/12]'
       }`}
     >
-      <button
-        type="button"
-        onClick={() => onOpen(project)}
-        className="absolute inset-0 z-10 block h-full w-full text-left"
-        aria-label={`Open project ${project.title}`}
+      <Link
+        href={`/work/${project.slug}`}
+        className="absolute inset-0 z-10 block h-full w-full"
+        aria-label={`View case study: ${project.title}`}
       />
       <motion.div
         className="h-full w-full"
@@ -117,6 +117,9 @@ export default function WorkCard({ project, index, large, onOpen }: Props) {
         </h3>
         <p className="mt-1 font-sans text-[10px] font-semibold uppercase tracking-caps text-gold">
           {project.client}
+        </p>
+        <p className="mt-2 translate-y-2 font-sans text-[10px] font-semibold uppercase tracking-caps text-ink/0 transition-all duration-300 group-hover:translate-y-0 group-hover:text-ink/70">
+          View Case Study →
         </p>
       </div>
     </motion.article>

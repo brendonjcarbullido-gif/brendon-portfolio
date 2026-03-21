@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { motionEase, usePrefersReducedMotion } from '@/lib/motion'
+import { SOCIAL_LINKS } from '@/lib/data'
 
 const links = [
   { href: '/work', label: 'Work' },
@@ -28,6 +29,12 @@ export default function Nav() {
   useEffect(() => {
     setOpen(false)
   }, [pathname])
+
+  useEffect(() => {
+    if (open) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
 
   const stagger = reduced ? 0 : 0.08
 
@@ -60,40 +67,51 @@ export default function Nav() {
               </Link>
             )
           })}
+          <a
+            href="/files/brendon-carbullido-resume.pdf"
+            download
+            className="cursor-hover rounded-full border border-gold px-4 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-caps text-gold transition-colors duration-300 hover:bg-gold hover:text-home"
+          >
+            Résumé ↓
+          </a>
         </nav>
 
         <button
           type="button"
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden cursor-hover"
+          className="relative z-[6001] flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden cursor-hover"
           aria-expanded={open}
-          aria-label="Open menu"
-          onClick={() => setOpen(true)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          onClick={() => setOpen(!open)}
         >
-          <span className="h-px w-6 bg-ink" />
-          <span className="h-px w-6 bg-ink" />
+          <span
+            className={`h-px w-6 bg-ink transition-transform duration-300 ${
+              open ? 'translate-y-[3.5px] rotate-45' : ''
+            }`}
+          />
+          <span
+            className={`h-px w-6 bg-ink transition-transform duration-300 ${
+              open ? '-translate-y-[3.5px] -rotate-45' : ''
+            }`}
+          />
         </button>
       </header>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[6000] flex flex-col bg-home px-8 pt-24 md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[6000] flex flex-col bg-home px-8 pt-24 pb-12 md:hidden"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.35, ease: motionEase }}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setOpen(false)
+            }}
           >
-            <button
-              type="button"
-              className="absolute right-5 top-5 font-sans text-sm uppercase tracking-caps text-gold cursor-hover"
-              onClick={() => setOpen(false)}
-            >
-              Close
-            </button>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-1 flex-col gap-6">
               <Link
                 href="/"
-                className="cursor-hover font-display text-4xl font-bold text-ink"
+                className="cursor-hover font-display text-[2.5rem] font-bold text-ink"
                 onClick={() => setOpen(false)}
               >
                 Home
@@ -107,13 +125,41 @@ export default function Nav() {
                 >
                   <Link
                     href={l.href}
-                    className="cursor-hover font-display text-4xl font-bold text-ink"
+                    className="cursor-hover font-display text-[2.5rem] font-bold text-ink"
                     onClick={() => setOpen(false)}
                   >
                     {l.label}
                   </Link>
                 </motion.div>
               ))}
+            </div>
+
+            <div className="mt-auto flex flex-col gap-6">
+              <div className="flex items-center gap-6">
+                <a
+                  href={SOCIAL_LINKS.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans text-[11px] font-semibold uppercase tracking-caps text-gold transition-colors hover:text-ink"
+                >
+                  Instagram
+                </a>
+                <a
+                  href={SOCIAL_LINKS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans text-[11px] font-semibold uppercase tracking-caps text-gold transition-colors hover:text-ink"
+                >
+                  LinkedIn
+                </a>
+              </div>
+              <a
+                href="/files/brendon-carbullido-resume.pdf"
+                download
+                className="inline-flex w-fit cursor-hover rounded-full border border-gold px-6 py-2 font-sans text-[11px] font-semibold uppercase tracking-caps text-gold transition-colors duration-300 hover:bg-gold hover:text-home"
+              >
+                Résumé ↓
+              </a>
             </div>
           </motion.div>
         )}

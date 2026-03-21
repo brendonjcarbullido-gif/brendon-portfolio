@@ -1,11 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import { projects } from '@/lib/data'
-import type { Project } from '@/lib/data'
 import WorkCard from './WorkCard'
-import WorkModal from './WorkModal'
 
 type Props = {
   preview: boolean
@@ -13,7 +10,6 @@ type Props = {
 
 export default function WorkGrid({ preview }: Props) {
   const list = preview ? projects.slice(0, 4) : projects
-  const [active, setActive] = useState<Project | null>(null)
 
   return (
     <section className={`px-5 py-20 md:px-10 md:py-28 ${preview ? 'bg-home' : 'bg-work'}`}>
@@ -51,13 +47,11 @@ export default function WorkGrid({ preview }: Props) {
               project={p}
               index={i}
               large={!preview}
-              onOpen={setActive}
+              onOpen={() => {}}
             />
           ))}
         </div>
       </div>
-
-      <WorkModal project={active} onClose={() => setActive(null)} />
     </section>
   )
 }

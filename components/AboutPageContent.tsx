@@ -279,13 +279,14 @@ export default function AboutPageContent() {
             ))}
           </div>
 
-          <div className="mt-14">
+          <div className="mt-14 flex flex-wrap items-center gap-4">
+            {/* DROP resume PDF at public/files/brendon-carbullido-resume.pdf */}
             <a
-              href="/resume/Brendon_Carbullido_Resume.pdf"
+              href="/files/brendon-carbullido-resume.pdf"
               download
               className="inline-flex cursor-hover border border-gold px-6 py-2 font-sans text-[11px] font-semibold uppercase tracking-caps text-gold transition-colors duration-300 hover:bg-gold hover:text-about"
             >
-              Download Resume
+              Résumé ↓
             </a>
           </div>
         </div>

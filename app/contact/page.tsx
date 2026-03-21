@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from 'react'
 import Footer from '@/components/Footer'
+import { SOCIAL_LINKS } from '@/lib/data'
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -10,11 +11,10 @@ export default function ContactPage() {
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [done, setDone] = useState(false)
+  const [sent, setSent] = useState(false)
 
-  async function onSubmit(e: FormEvent) {
+  function onSubmit(e: FormEvent) {
     e.preventDefault()
     setError('')
     if (!name.trim() || !email.trim() || !subject.trim() || !message.trim()) {
@@ -26,32 +26,15 @@ export default function ContactPage() {
       return
     }
 
-    setLoading(true)
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          subject: subject.trim(),
-          message: message.trim(),
-        }),
-      })
-      setLoading(false)
-      if (!res.ok) {
-        setError(
-          'Something went wrong. Please email me directly at brendonjcarbullido@gmail.com'
-        )
-        return
-      }
-      setDone(true)
-    } catch {
-      setLoading(false)
-      setError(
-        'Something went wrong. Please email me directly at brendonjcarbullido@gmail.com'
-      )
-    }
+    const mailtoSubject = encodeURIComponent(`[Portfolio] ${subject.trim()}`)
+    const mailtoBody = encodeURIComponent(
+      `Hi Brendon,\n\nName: ${name.trim()}\nEmail: ${email.trim()}\n\n${message.trim()}`
+    )
+    const mailtoString = `mailto:brendonjcarbullido@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`
+    window.open(mailtoString, '_blank')
+
+    setSent(true)
+    setTimeout(() => setSent(false), 3000)
   }
 
   return (
@@ -75,101 +58,99 @@ export default function ContactPage() {
 
       <div className="mx-auto grid max-w-7xl gap-14 px-5 pb-24 md:grid-cols-[3fr_2fr] md:gap-16 md:px-10">
         <div>
-          {done ? (
-            <p className="font-display text-3xl font-bold italic text-gold md:text-4xl">
-              Message sent. I&apos;ll be in touch.
-            </p>
-          ) : (
-            <form onSubmit={onSubmit} className="space-y-8" noValidate>
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block font-sans text-[9px] font-bold uppercase tracking-label text-gold"
-                >
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  disabled={loading}
-                  placeholder="Your name"
-                  className="mt-2 w-full border-0 border-b border-line bg-transparent py-2 font-sans text-sm font-light text-ink placeholder:text-[#444444] outline-none transition-colors duration-300 focus:border-gold disabled:opacity-50"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block font-sans text-[9px] font-bold uppercase tracking-label text-gold"
-                >
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={loading}
-                  placeholder="you@example.com"
-                  className="mt-2 w-full border-0 border-b border-line bg-transparent py-2 font-sans text-sm font-light text-ink placeholder:text-[#444444] outline-none transition-colors duration-300 focus:border-gold disabled:opacity-50"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="block font-sans text-[9px] font-bold uppercase tracking-label text-gold"
-                >
-                  Subject
-                </label>
-                <input
-                  id="subject"
-                  name="subject"
-                  required
-                  value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
-                  disabled={loading}
-                  placeholder="Project type, timeline…"
-                  className="mt-2 w-full border-0 border-b border-line bg-transparent py-2 font-sans text-sm font-light text-ink placeholder:text-[#444444] outline-none transition-colors duration-300 focus:border-gold disabled:opacity-50"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block font-sans text-[9px] font-bold uppercase tracking-label text-gold"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  disabled={loading}
-                  rows={6}
-                  placeholder="Tell me about your project."
-                  className="mt-2 min-h-[140px] w-full resize-y border-0 border-b border-line bg-transparent py-2 font-sans text-sm font-light text-ink placeholder:text-[#444444] outline-none transition-colors duration-300 focus:border-gold disabled:opacity-50"
-                />
-              </div>
+          <form onSubmit={onSubmit} className="space-y-8" noValidate>
+            <div>
+              <label
+                htmlFor="name"
+                className="block font-sans text-[9px] font-bold uppercase tracking-label text-gold"
+              >
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your name"
+                className="mt-2 w-full border-0 border-b border-line bg-transparent py-2 font-sans text-sm font-light text-ink placeholder:text-[#444444] outline-none transition-colors duration-300 focus:border-gold"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="email"
+                className="block font-sans text-[9px] font-bold uppercase tracking-label text-gold"
+              >
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                className="mt-2 w-full border-0 border-b border-line bg-transparent py-2 font-sans text-sm font-light text-ink placeholder:text-[#444444] outline-none transition-colors duration-300 focus:border-gold"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="subject"
+                className="block font-sans text-[9px] font-bold uppercase tracking-label text-gold"
+              >
+                Project Type
+              </label>
+              <input
+                id="subject"
+                name="subject"
+                required
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                placeholder="Brand identity, campaign, packaging…"
+                className="mt-2 w-full border-0 border-b border-line bg-transparent py-2 font-sans text-sm font-light text-ink placeholder:text-[#444444] outline-none transition-colors duration-300 focus:border-gold"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="message"
+                className="block font-sans text-[9px] font-bold uppercase tracking-label text-gold"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                rows={6}
+                placeholder="Tell me about your project."
+                className="mt-2 min-h-[140px] w-full resize-y border-0 border-b border-line bg-transparent py-2 font-sans text-sm font-light text-ink placeholder:text-[#444444] outline-none transition-colors duration-300 focus:border-gold"
+              />
+            </div>
 
-              <div className="flex flex-col items-start gap-4">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="cursor-hover border border-gold px-8 py-3 font-sans text-[11px] font-semibold uppercase tracking-caps text-gold transition-colors duration-300 hover:bg-gold hover:text-contact disabled:cursor-not-allowed disabled:opacity-60"
+            <div className="flex flex-col items-start gap-4">
+              <button
+                type="submit"
+                className="cursor-hover border border-gold px-8 py-3 font-sans text-[11px] font-semibold uppercase tracking-caps text-gold transition-colors duration-300 hover:bg-gold hover:text-contact"
+              >
+                {sent ? 'Opening your mail app ✓' : 'Send Message'}
+              </button>
+              <p className="font-sans text-xs font-light text-muted">
+                Or email directly:{' '}
+                <a
+                  href="mailto:brendonjcarbullido@gmail.com"
+                  className="text-ink underline transition-colors hover:text-gold"
                 >
-                  {loading ? 'Sending...' : 'Send Message'}
-                </button>
-                {error && (
-                  <p className="max-w-lg font-sans text-sm font-light text-ink/80">{error}</p>
-                )}
-              </div>
-            </form>
-          )}
+                  brendonjcarbullido@gmail.com
+                </a>
+              </p>
+              {error && (
+                <p className="max-w-lg font-sans text-sm font-light text-ink/80">{error}</p>
+              )}
+            </div>
+          </form>
         </div>
 
         <aside className="font-sans text-sm font-light text-ink">
@@ -211,7 +192,9 @@ export default function ContactPage() {
           <ul className="mt-6 space-y-4">
             <li>
               <a
-                href="#"
+                href={SOCIAL_LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center gap-2 text-ink transition-colors hover:text-gold"
               >
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -220,7 +203,9 @@ export default function ContactPage() {
             </li>
             <li>
               <a
-                href="#"
+                href={SOCIAL_LINKS.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center gap-2 text-ink transition-colors hover:text-gold"
               >
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>

@@ -1,6 +1,12 @@
+export const SOCIAL_LINKS = {
+  instagram: "https://www.instagram.com/brendon.carbullido",
+  linkedin: "https://www.linkedin.com/in/brendoncarbullido",
+}
+
 export const projects = [
   {
     id: 'teeccino-rebrand',
+    slug: 'teeccino-rebrand',
     title: 'Teeccino Social Rebrand',
     client: 'Teeccino Caffé',
     year: '2024–Present',
@@ -10,9 +16,21 @@ export const projects = [
     mediaType: 'image',
     image: '/images/work/teeccino-rebrand.jpg',
     tags: ['Social Strategy', 'Content Direction', 'Brand Identity', 'Photography', 'Video'],
+    caseStudy: {
+      headline: 'Rebuilding a Legacy Brand for Social',
+      overview:
+        "Teeccino's social channels were stale and inconsistent. I rebuilt the entire content strategy from scratch — shooting, editing, and publishing 5x per week as a one-person creative department, growing the audience to 45K+ with a 6% engagement rate.",
+      role: 'Director of Social Media',
+      client: 'Teeccino Caffé',
+      year: '2024–Present',
+      deliverables: ['Content Strategy', 'Photography', 'Video'],
+      images: ['/images/work/teeccino-rebrand.jpg'],
+      color: '#8B6F47',
+    },
   },
   {
     id: 'anne-klein',
+    slug: 'anne-klein',
     title: "Anne Klein International Women's Campaign",
     client: 'Anne Klein',
     year: '2023',
@@ -22,9 +40,21 @@ export const projects = [
     mediaType: 'image',
     image: '/images/work/anne-klein-campaign.jpg',
     tags: ['Campaign Direction', 'Art Direction', 'Print & Digital', 'Fashion'],
+    caseStudy: {
+      headline: "Launching Anne Klein's Biggest Campaign",
+      overview:
+        "Directed the full creative arc of Anne Klein's International Women's Campaign — from initial concept and mood boards through shoot direction and final delivery across digital and print. One of GCMG's largest campaign launches.",
+      role: 'Creative Director',
+      client: 'Anne Klein',
+      year: '2023',
+      deliverables: ['Campaign Direction', 'Digital', 'Print'],
+      images: ['/images/work/anne-klein-campaign.jpg'],
+      color: '#1A1A2E',
+    },
   },
   {
     id: 'lotto-us',
+    slug: 'lotto-us',
     title: 'Lotto US Brand Launch',
     client: 'Lotto US × GCMG Agency',
     year: '2023–2024',
@@ -35,9 +65,21 @@ export const projects = [
     video: '/videos/lotto-us.mp4',
     image: '/images/work/lotto-us-launch.jpg',
     tags: ['Brand Launch', 'Visual Identity', 'International', 'Creative Direction'],
+    caseStudy: {
+      headline: "Launching America's Lotto",
+      overview:
+        "Spearheaded the US market launch of Lotto — developing the full visual identity system and bridging creative assets across international markets. Led brand positioning, visual system development, and all launch content.",
+      role: 'Creative Director',
+      client: 'Lotto US × GCMG Agency',
+      year: '2023–2024',
+      deliverables: ['Visual Identity', 'Brand Launch', 'International Assets'],
+      images: ['/images/work/lotto-us-launch.jpg'],
+      color: '#0D3B66',
+    },
   },
   {
     id: 'joseph-abboud',
+    slug: 'joseph-abboud',
     title: 'Joseph Abboud Creative',
     client: 'Joseph Abboud × GCMG Agency',
     year: '2023–2024',
@@ -48,9 +90,21 @@ export const projects = [
     video: '/videos/joseph-abboud.mp4',
     image: '/images/work/joseph-abboud.jpg',
     tags: ['Creative Direction', 'Production', 'Fashion', 'Photography', 'Video'],
+    caseStudy: {
+      headline: 'Directing Joseph Abboud',
+      overview:
+        'Full creative direction across photo and video production for Joseph Abboud. Managed shoot execution, talent direction, and post-production delivery across campaign and digital content.',
+      role: 'Art Director',
+      client: 'Joseph Abboud × GCMG Agency',
+      year: '2023–2024',
+      deliverables: ['Campaign Direction', 'Photo Production'],
+      images: ['/images/work/joseph-abboud.jpg'],
+      color: '#2C2C2C',
+    },
   },
   {
     id: 'casa-amour',
+    slug: 'casa-amour',
     title: 'Casa Amour',
     client: 'Casa Amour',
     year: '2024',
@@ -59,9 +113,21 @@ export const projects = [
     mediaType: 'image',
     image: '/images/work/casa-amour.jpg',
     tags: ['Brand Direction', 'Campaign Visuals'],
+    caseStudy: {
+      headline: 'Building Casa Amour',
+      overview:
+        'Developed the visual identity and brand direction for Casa Amour — crafting a cohesive creative language across campaign visuals and brand touchpoints.',
+      role: 'Creative Director',
+      client: 'Casa Amour',
+      year: '2024',
+      deliverables: ['Visual Identity', 'Brand Direction'],
+      images: ['/images/work/casa-amour.jpg'],
+      color: '#6B3A3A',
+    },
   },
   {
     id: 'hand-designed',
+    slug: 'hand-designed',
     title: 'Hand Designed',
     client: 'Hand Designed',
     year: '2024',
@@ -70,9 +136,21 @@ export const projects = [
     mediaType: 'image',
     image: '/images/work/hand-designed.jpg',
     tags: ['Design Systems', 'Content Direction'],
+    caseStudy: {
+      headline: 'Crafting Hand Designed',
+      overview:
+        'Created a complete design system and visual content strategy for a handcrafted brand experience — balancing artisanal authenticity with modern design sensibility.',
+      role: 'Creative Director',
+      client: 'Hand Designed',
+      year: '2024',
+      deliverables: ['Design System', 'Visual Content', 'Brand Identity'],
+      images: ['/images/work/hand-designed.jpg'],
+      color: '#4A4A3A',
+    },
   },
   {
     id: 'kandeyce-jorden',
+    slug: 'kandeyce-jorden',
     title: 'Kandeyce Jorden Art — Brand from Zero',
     client: 'Kandeyce Jorden Art',
     year: '2022–2023',
@@ -82,9 +160,21 @@ export const projects = [
     mediaType: 'image',
     image: '/images/work/kandeyce-jorden.jpg',
     tags: ['Brand Building', 'Social Growth', 'Art Direction', 'Content Strategy'],
+    caseStudy: {
+      headline: 'Building an Artist Brand from Zero',
+      overview:
+        "Took Kandeyce Jorden Art from zero online presence to thousands of engaged followers. Directed mood board workshops that became a recurring revenue stream, and established the visual language that defined the artist's public identity.",
+      role: 'Art Director',
+      client: 'Kandeyce Jorden Art',
+      year: '2022–2023',
+      deliverables: ['Brand Building', 'Social Growth', 'Content Strategy'],
+      images: ['/images/work/kandeyce-jorden.jpg'],
+      color: '#5C4033',
+    },
   },
   {
     id: 'teeccino-packaging',
+    slug: 'teeccino-packaging',
     title: 'Teeccino Packaging & Product Design',
     client: 'Teeccino Caffé',
     year: '2025–Present',
@@ -94,6 +184,17 @@ export const projects = [
     mediaType: 'image',
     image: '/images/work/teeccino-packaging.jpg',
     tags: ['Packaging Design', 'Art Direction', 'Brand', 'Print'],
+    caseStudy: {
+      headline: 'Redesigning Teeccino Packaging',
+      overview:
+        "Designed contemporary product packaging that balances modern design sensibility with Teeccino's established brand heritage. Work spans new product lines, seasonal packaging, and digital-first brand extensions.",
+      role: 'Art Director',
+      client: 'Teeccino Caffé',
+      year: '2025–Present',
+      deliverables: ['Packaging Design', 'Brand System'],
+      images: ['/images/work/teeccino-packaging.jpg'],
+      color: '#6B5B3E',
+    },
   },
 ]
 

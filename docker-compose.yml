@@ -1,0 +1,16 @@
+services:
+  portfolio:
+    build: .
+    container_name: portfolio
+    restart: unless-stopped
+    ports:
+      - "3010:3000"
+    env_file:
+      - .env.local
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
+    name: homelab_homelab

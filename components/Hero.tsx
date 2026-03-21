@@ -2,15 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useHeadTracking } from '@/lib/hooks/useHeadTracking'
-import { ParallaxLayer, TrackingIndicator } from '@/components/HeroParallax'
+import { ParallaxLayer } from '@/components/ParallaxLayer'
 import { motionEase, usePrefersReducedMotion } from '@/lib/motion'
 
 const ROLES = ['Art Director', 'Creative Director', 'Brand Strategist'] as const
 
 export default function Hero() {
   const reduced = usePrefersReducedMotion()
-  const head = useHeadTracking()
   const [roleIndex, setRoleIndex] = useState(0)
 
   useEffect(() => {
@@ -26,9 +24,9 @@ export default function Hero() {
   return (
     <section
       className="relative h-[100dvh] min-h-[640px] w-full overflow-hidden bg-home"
-      style={{ perspective: '1200px', perspectiveOrigin: '50% 50%' }}
+      style={{ perspective: '900px', perspectiveOrigin: 'center center' }}
     >
-      <ParallaxLayer layer="videoBg" head={head} className="absolute inset-0">
+      <ParallaxLayer layer="video" className="absolute inset-0">
         <video
           src="/videos/C0006.mov"
           autoPlay
@@ -75,7 +73,7 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-5 text-center">
-        <ParallaxLayer layer="name" head={head}>
+        <ParallaxLayer layer="name">
           <div className="w-full px-4 text-center overflow-hidden">
             <h1 className="font-display font-bold uppercase leading-none text-ink">
               {nameWords.map((w, i) => (
@@ -106,7 +104,7 @@ export default function Hero() {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer layer="role" head={head} className="mt-8 flex max-w-2xl flex-col items-center gap-3">
+        <ParallaxLayer layer="role" className="mt-8 flex max-w-2xl flex-col items-center gap-3">
           <div
             className="relative min-h-[2rem] w-full overflow-visible font-sans text-lg font-medium text-gold md:text-xl"
             aria-live="polite"
@@ -124,7 +122,7 @@ export default function Hero() {
               </motion.span>
             </AnimatePresence>
           </div>
-          <ParallaxLayer layer="tagline" head={head}>
+          <ParallaxLayer layer="tagline">
             <p className="font-sans text-sm font-light tracking-wide text-muted md:text-base">
               Full-ownership creative. Los Angeles.
             </p>
@@ -140,14 +138,12 @@ export default function Hero() {
         aria-hidden
       />
 
-      <ParallaxLayer layer="scroll" head={head} className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2">
+      <ParallaxLayer layer="scroll" className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2">
         <div className="h-10 w-px bg-gradient-to-b from-gold to-transparent animate-scroll-cue" />
         <span className="font-sans text-[10px] font-semibold uppercase tracking-caps text-muted">
           Scroll
         </span>
       </ParallaxLayer>
-
-      <TrackingIndicator head={head} />
     </section>
   )
 }

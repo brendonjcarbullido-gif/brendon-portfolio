@@ -7,6 +7,8 @@ import CustomCursor from '@/components/CustomCursor'
 import GrainOverlay from '@/components/GrainOverlay'
 import ScrollProgress from '@/components/ScrollProgress'
 import PageTransition from '@/components/PageTransition'
+import { TrackingProvider } from '@/context/TrackingContext'
+import { TrackingBadge } from '@/components/TrackingBadge'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -40,11 +42,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`}>
       <body className="flex min-h-screen flex-col bg-home font-sans text-ink antialiased">
-        <ScrollProgress />
-        <CustomCursor />
-        <GrainOverlay />
-        <Nav />
-        <PageTransition>{children}</PageTransition>
+        <TrackingProvider>
+          <ScrollProgress />
+          <CustomCursor />
+          <GrainOverlay />
+          <Nav />
+          <PageTransition>{children}</PageTransition>
+          <TrackingBadge />
+        </TrackingProvider>
       </body>
     </html>
   )

@@ -56,6 +56,27 @@ body {
   animation: scroll-cue 2s ease-in-out infinite;
 }
 
+/* Ensure name never overflows on any device */
+.hero-name {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Scale down further on very small screens */
+@media (max-width: 380px) {
+  .hero-name {
+    font-size: clamp(1.9rem, 13vw, 3rem) !important;
+    letter-spacing: -0.03em !important;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-name {
+    font-size: clamp(1.5rem, 8vw, 3rem) !important;
+  }
+}
+
 .marquee-track {
   display: flex;
   width: max-content;

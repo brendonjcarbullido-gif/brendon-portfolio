@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
-    "@mediapipe/camera_utils": "^0.3.1640029074",
-    "@mediapipe/face_mesh": "^0.4.1633559619",
+    "face-api.js": "^0.22.2",
     "framer-motion": "^11.11.17",
     "gsap": "^3.12.5",
     "next": "^16.2.0",
